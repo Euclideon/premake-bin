@@ -1,0 +1,7 @@
+[submodule "modules/qt"]
+	path = modules/qt
+	url = git@bne-fs-git-001.euclideon.local:programmers/premake-qt.git
+
+[submodule "modules/gitlab"]
+	path = modules/gitlab
+	url = git@bne-fs-git-001.euclideon.local:programmers/premake-gitlab.git

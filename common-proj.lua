@@ -21,12 +21,11 @@ floatingpoint "Fast"
 --  * Randomize base address
 --  * Profile
 
-
-objdir "Output/intermediate/%{prj.name}/%{cfg.buildcfg}_%{cfg.platform}"
+objdir "../../Output/intermediate/%{prj.name}/%{cfg.buildcfg}_%{cfg.platform}"
 filter { "kind:SharedLib or StaticLib" }
-	targetdir "Output/lib/%{cfg.buildcfg}_%{cfg.platform}"
+	targetdir "../../Output/lib/%{cfg.buildcfg}_%{cfg.platform}"
 filter { "kind:ConsoleApp or WindowedApp" }
-	targetdir "Output/bin/%{cfg.buildcfg}_%{cfg.platform}"
+	targetdir "../../Output/bin/%{cfg.buildcfg}_%{cfg.platform}"
 
 -- configurations
 filter { "configurations:Debug*" }

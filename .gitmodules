@@ -1,16 +1,15 @@
 [submodule "modules/qt"]
 	path = modules/qt
-	url = git@bne-fs-git-001.euclideon.local:programmers/premake-qt.git
-
+	url = ../../programmers/premake-qt.git
 [submodule "modules/gitlab"]
 	path = modules/gitlab
-	url = git@bne-fs-git-001.euclideon.local:programmers/premake-gitlab.git
+	url = ../../programmers/premake-gitlab.git
 [submodule "modules/nacl"]
 	path = modules/nacl
-	url = git@bne-fs-git-001.euclideon.local:external/premake-nacl.git
+	url = ../../external/premake-nacl.git
 [submodule "modules/emscripten"]
 	path = modules/emscripten
-	url = git@bne-fs-git-001.euclideon.local:external/premake-emscripten.git
+	url = ../../external/premake-emscripten.git
 [submodule "modules/vstool"]
 	path = modules/vstool
-	url = git@bne-fs-git-001.euclideon.local:external/premake-vstool.git
+	url = ../../external/premake-vstool.git

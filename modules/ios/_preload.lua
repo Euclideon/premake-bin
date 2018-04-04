@@ -16,20 +16,37 @@
 	api.addAllowed("system", { p.IOS })
 	api.addAllowed("architecture", { "armv7", "arm64" })
 
-	local origArch = premake.tools.clang.cflags.architecture -- Will need to change "cflags" to "shared" eventually.
-	premake.tools.clang.cflags.architecture = {
-		x86 = function(cfg) return iif(cfg.system == p.IOS, "-arch i386", origArch.x86) end,
-		x86_64 = function(cfg) return iif(cfg.system == p.IOS, "-arch x86_64", origArch.x86_64) end,
-		armv7 = function(cfg) return iif(cfg.system == p.IOS, "-arch armv7", "") end,
-		arm64 = function(cfg) return iif(cfg.system == p.IOS, "-arch arm64", "") end,
+	local archMap = {
+		x86 = "-arch i386",
+		x86_64 = "-arch x86_64",
+		armv7 = "-arch armv7",
+		arm64 = "-arch arm64",
 	}
-	
+
+	local function mapArchs(cfg, arch, orig)
+		if cfg.system == p.IOS then
+			return archMap[arch]
+		elseif type(orig[arch]) == "function" then
+			return orig[arch](cfg)
+		else
+			return orig[arch]
+		end
+	end
+
+	local origArch = premake.tools.clang.shared.architecture
+	premake.tools.clang.shared.architecture = {
+		x86 = function(cfg) return mapArchs(cfg, "x86", origArch) end,
+		x86_64 = function(cfg) return mapArchs(cfg, "x86_64", origArch) end,
+		armv7 = function(cfg) return mapArchs(cfg, "armv7", origArch) end,
+		arm64 = function(cfg) return mapArchs(cfg, "arm64", origArch) end,
+	}
+
 	local origArch = premake.tools.clang.ldflags.architecture
 	premake.tools.clang.ldflags.architecture = {
-		x86 = function(cfg) return iif(cfg.system == p.IOS, "-arch i386", origArch.x86) end,
-		x86_64 = function(cfg) return iif(cfg.system == p.IOS, "-arch x86_64", origArch.x86_64) end,
-		armv7 = function(cfg) return iif(cfg.system == p.IOS, "-arch armv7", "") end,
-		arm64 = function(cfg) return iif(cfg.system == p.IOS, "-arch arm64", "") end,
+		x86 = function(cfg) return mapArchs(cfg, "x86", origArch) end,
+		x86_64 = function(cfg) return mapArchs(cfg, "x86_64", origArch) end,
+		armv7 = function(cfg) return mapArchs(cfg, "armv7", origArch) end,
+		arm64 = function(cfg) return mapArchs(cfg, "arm64", origArch) end,
 	}
 
 --
@@ -45,7 +62,7 @@
 	filter { "system:ios" }
 		toolset "clang"
 		
-	filter { "system:ios", "action:gmake" }
+	filter { "system:ios", "action:gmake*" }
 		buildoptions {
 			"-miphoneos-version-min=%{iif(cfg.systemversion, cfg.systemversion, '10.3')}",
 		}
@@ -53,7 +70,7 @@
 			"-miphoneos-version-min=%{iif(cfg.systemversion, cfg.systemversion, '10.3')}",
 		}
 	
-	filter { "system:ios", "action:gmake", "architecture:armv7 or arm64" }
+	filter { "system:ios", "action:gmake*", "architecture:armv7 or arm64" }
 		buildoptions {
 			"-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk",
 		}
@@ -61,7 +78,7 @@
 			"-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk",
 		}
 		
-	filter { "system:ios", "action:gmake", "architecture:x86 or x64" }
+	filter { "system:ios", "action:gmake*", "architecture:x86 or x64" }
 		buildoptions {
 			"-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk",
 		}

@@ -47,7 +47,7 @@ filter { "configurations:Release*", "system:not Emscripten" }
 	symbols "On"
 
 -- platform config
-filter { "system:windows" }
+filter { "system:windows", "kind:*App" }
 	defines { "WIN32", "_WINDOWS" }
 	links { "kernel32.lib", "user32.lib", "gdi32.lib", "winspool.lib", "comdlg32.lib", "advapi32.lib", "shell32.lib", "ole32.lib", "oleaut32.lib", "uuid.lib", "odbc32.lib", "odbccp32.lib" }
 

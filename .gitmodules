@@ -1,6 +1,3 @@
-[submodule "modules/nacl"]
-	path = modules/nacl
-	url = ../../external/premake-nacl.git
 [submodule "modules/emscripten"]
 	path = modules/emscripten
 	url = ../../external/premake-emscripten.git

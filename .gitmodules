@@ -7,6 +7,3 @@
 [submodule "modules/vstool"]
 	path = modules/vstool
 	url = ../../external/premake-vstool.git
-[submodule "modules/winrt"]
-	path = modules/winrt
-	url = ../../external/premake-winrt.git

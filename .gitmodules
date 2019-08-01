@@ -1,6 +1,3 @@
-[submodule "modules/qt"]
-	path = modules/qt
-	url = ../../programmers/premake-qt.git
 [submodule "modules/nacl"]
 	path = modules/nacl
 	url = ../../external/premake-nacl.git

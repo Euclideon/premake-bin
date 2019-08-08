@@ -1,6 +1,5 @@
 -- clear global state
 filter {}
-configuration {}
 
 -- common stuff that we want to be common among all projects
 warnings "Extra"
@@ -35,6 +34,7 @@ filter { "configurations:Release*" }
 -- platform config
 filter { "system:windows" }
 	flags { "NoIncrementalLink" }
+	editandcontinue "Off" -- Required so __LINE__ is a constant
 
 filter { "system:windows", "kind:*App" }
 	defines { "WIN32", "_WINDOWS" }

@@ -1,6 +1,6 @@
 [submodule "modules/emscripten"]
 	path = modules/emscripten
-	url = ../../external/premake-emscripten.git
+	url = ../../Euclideon/premake-emscripten.git
 [submodule "modules/vstool"]
 	path = modules/vstool
-	url = ../../external/premake-vstool.git
+	url = ../../Euclideon/premake-vstool.git

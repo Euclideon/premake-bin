@@ -4,7 +4,7 @@ filter {}
 -- common stuff that we want to be common among all projects
 warnings "Extra"
 targetname "%{prj.name}"
-flags { "NoMinimalRebuild", "NoPCH" }
+flags { "NoPCH" }
 exceptionhandling "Off"
 rtti "Off"
 
@@ -29,7 +29,8 @@ filter { "configurations:Release*" }
 	defines { "NDEBUG" }
 	optimize "Full"
 	symbols "Off"
-	flags { "NoFramePointer", "NoBufferSecurityCheck" }
+	omitframepointer "On"
+	flags { "NoBufferSecurityCheck" }
 
 -- platform config
 filter { "system:windows" }

@@ -37,6 +37,13 @@ filter { "system:windows" }
 	flags { "NoIncrementalLink" }
 	editandcontinue "Off" -- Required so __LINE__ is a constant
 
+-- Android settings
+filter { "system:android" }
+	toolset "clang"
+	toolchainversion "5.0"
+	stl "libc++"
+	defines { "_LARGEFILE_SOURCE" }
+
 filter { "system:windows", "kind:*App" }
 	defines { "WIN32", "_WINDOWS" }
 	links { "kernel32.lib", "user32.lib", "gdi32.lib", "winspool.lib", "comdlg32.lib", "advapi32.lib", "shell32.lib", "ole32.lib", "oleaut32.lib", "uuid.lib", "odbc32.lib", "odbccp32.lib" }
